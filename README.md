@@ -1,0 +1,1 @@
+Carousel with vanilla JavaScript
