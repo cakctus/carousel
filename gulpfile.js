@@ -1,11 +1,11 @@
-const { task, series, parallel, src, dest, watch } = require("gulp");
-const sass = require("gulp-sass")(require("sass"));
-const browserSync = require("browser-sync");
-const postcss = require("gulp-postcss");
-const csscomb = require("gulp-csscomb");
-const autoprefixer = require("autoprefixer");
-const mqpacker = require("css-mqpacker");
-const sortCSSmq = require("sort-css-media-queries");
+const { task, series, parallel, src, dest, watch } = require("gulp")
+const sass = require("gulp-sass")(require("sass"))
+const browserSync = require("browser-sync")
+const postcss = require("gulp-postcss")
+const csscomb = require("gulp-csscomb")
+const autoprefixer = require("autoprefixer")
+const mqpacker = require("css-mqpacker")
+const sortCSSmq = require("sort-css-media-queries")
 
 const PATH = {
   scssFolder: "./assets/scss/",
@@ -16,7 +16,7 @@ const PATH = {
   cssFile: "./assets/css/style.css",
   htmlFiles: "./*.html",
   jsFiles: "./assets/js/**/*.js",
-};
+}
 
 const PLUGINS = [
   autoprefixer({
@@ -24,14 +24,14 @@ const PLUGINS = [
     cascade: true,
   }),
   mqpacker({ sort: sortCSSmq }),
-];
+]
 
 function scss() {
   return src(PATH.scssFile)
     .pipe(sass({ outputStyle: "expanded" }).on("error", sass.logError))
     .pipe(postcss(PLUGINS))
     .pipe(dest(PATH.cssFolder))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
 }
 
 function scssDev() {
@@ -39,41 +39,41 @@ function scssDev() {
     .pipe(sass({ outputStyle: "expanded" }).on("error", sass.logError))
     .pipe(postcss(PLUGINS))
     .pipe(dest(PATH.cssFolder, { sourcemaps: true }))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
 }
 
 function comb() {
-  return src(PATH.scssFiles).pipe(csscomb()).pipe(dest(PATH.scssFolder));
+  return src(PATH.scssFiles).pipe(csscomb()).pipe(dest(PATH.scssFolder))
 }
 
 function syncInit() {
   browserSync({
     server: { baseDir: "./" },
     notify: false,
-  });
+  })
 }
 
 async function sync() {
-  browserSync.reload();
+  browserSync.reload()
 }
 
 function watchFiles() {
-  syncInit();
-  watch(PATH.scssFiles, series(scss));
-  watch(PATH.htmlFiles, sync);
-  watch(PATH.jsFiles, sync);
+  syncInit()
+  watch(PATH.scssFiles, series(scss))
+  watch(PATH.htmlFiles, sync)
+  watch(PATH.jsFiles, sync)
   // watch(PATH.cssFiles, sync);
 }
 
 function watchDevFiles() {
-  syncInit();
-  watch(PATH.scssFiles, series(scssDev));
-  watch(PATH.htmlFiles, sync);
-  watch(PATH.jsFiles, sync);
+  syncInit()
+  watch(PATH.scssFiles, series(scssDev))
+  watch(PATH.htmlFiles, sync)
+  watch(PATH.jsFiles, sync)
 }
 
-task("comb", series(comb));
-task("scss", series(scss));
+task("comb", series(comb))
+task("scss", series(scss))
 // task("dev", series(scssDev))
-task("watch", watchFiles);
-task("dev", watchDevFiles);
+task("watch", watchFiles)
+task("dev", watchDevFiles)

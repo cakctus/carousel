@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Slider</title>
 </head>
@@ -12,17 +15,17 @@
 <body>
     <div class="carousel slider" id="carousel">
         <ul id="slides" class="slides">
-            <li class="slide active">Slide 1</li>
-            <li class="slide item">Slide 2</li>
-            <li class="slide item">Slide 3</li>
-            <li class="slide item">Slide 4</li>
-            <li class="slide item">Slide 5</li>
+            <li class="slide active">
+                <img class="slide_image" src="assets/images/1.jpg" alt="slide-1">
+            </li>
+            <li class="slide item"><img class="slide_image" src="assets/images/2.jpg" alt="slide-2"></li>
+            <li class="slide item"><img class="slide_image" src="assets/images/3.jpg" alt="slide-3"></li>
+            <li class="slide item"><img class="slide_image" src="assets/images/4.jpg" alt="slide-4"></li>
         </ul>
     </div>
 
-    <script src="assets/js/carousel.js"></script>
-    <script src="assets/js/swipe.js"></script>
-    <script src="assets/js/index.js"></script>
+
+    <script src="assets/js/index.js" type="module"></script>
 </body>
 
 </html>
