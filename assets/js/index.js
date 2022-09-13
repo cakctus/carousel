@@ -6,6 +6,7 @@ const carousel = new Swipe({
   // slide: ".slide",
   interval: 1000,
   // isPlaying: true,
+  mouseOver: false,
 })
 
 carousel.init()

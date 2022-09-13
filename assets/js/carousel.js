@@ -4,9 +4,11 @@ class Carousel {
     this.container = document.querySelector(this._initParams().container)
     this.slidesContainer = document.querySelector(this._initParams().slides)
     this.slide = document.querySelectorAll(this._initParams().slide)
+    this.MouseOver = this._initParams().mouseOver
 
     this.interval = 2000
     this.currentSlide = 0
+    this.isPlaying = true
   }
 
   _initParams(params) {
@@ -16,8 +18,8 @@ class Carousel {
       slide: ".slide",
       interval: 1000,
       isPlaying: true,
+      mouseOver: false,
     }
-    console.log({ ...defaultObject, ...params })
     return { ...defaultObject, ...params }
   }
 
@@ -129,11 +131,15 @@ class Carousel {
   }
 
   mouseOverStop() {
-    this.play()
+    clearInterval(this.intervalSlider)
+    this.MouseOver = true
+    this.pauseButton.innerHTML = '<i class="fa-solid fa-play"></i>'
   }
 
   mouseOverPlay() {
-    this.stop()
+    this.intervalSlider = setInterval(this.nextSlides.bind(this), this.interval)
+    this.MouseOver = false
+    this.pauseButton.innerHTML = '<i class="fa-solid fa-stop"></i>'
   }
 
   _nextSlide() {
@@ -156,7 +162,17 @@ class Carousel {
   }
 
   _keyBoard(e) {
-    if (e.code === "Space") this.stopPlay()
+    //if (e.keyCode === 32) this.isPlaying = !this.isPlaying
+    if (this.MouseOver === false) {
+      if (e.code === "Space") {
+        if (this.isPlaying) {
+          this.play()
+        } else {
+          this.stop()
+        }
+      }
+    }
+
     if (e.code === "ArrowRight") this._nextSlide()
     if (e.code === "ArrowLeft") this._previousSlide()
   }
