@@ -6,7 +6,7 @@ class Carousel {
     this.slide = document.querySelectorAll(this._initParams().slide)
     this.MouseOver = this._initParams().mouseOver
 
-    this.interval = 500
+    this.interval = 2000
     this.currentSlide = 0
     this.isPlaying = true
   }
